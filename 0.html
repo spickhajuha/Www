@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plyr – All Controls + PIP (No Volume Slider)</title>
+
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ff0066;
+      margin-bottom: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 16px;
+      background: #000;
+      box-shadow: 0 0 25px rgba(255, 0, 102, 0.3);
+    }
+
+    /* Main theme color */
+    .plyr--video {
+      --plyr-color-main: #ff0066;
+    }
+
+    /* Hide only the volume slider but keep the mute button */
+    .plyr__volume input[type=range] {
+      display: none !important;
+    }
+
+    /* Optional: center controls nicely */
+    .plyr__controls {
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎥 Plyr – All Controls + PIP (No Volume Slider)</h1>
+
+  <!-- Video -->
+  <video id="player" playsinline controls>
+    <source src="https://cdn.bmaal.com/ULLU/Tu%20Dekh%20Meri%20Photo%20D1/Tu%20Dekh%20Meri%20Photo%20Episode%202.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Plyr JS -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+  <script>
+    const player = new Plyr('#player', {
+      controls: [
+        'play-large',     // Big central play button
+        'play',           // Play/pause
+        'progress',       // Progress bar
+        'current-time',   // Current time display
+        'duration',       // Duration display
+        'mute',           // Mute button (no slider)
+        'captions',       // Captions toggle
+        'settings',       // Settings (speed, loop, etc.)
+        'pip',            // ✅ Picture-in-Picture
+        'airplay',        // Apple AirPlay
+        'fullscreen'      // Fullscreen toggle
+      ],
+      settings: ['captions', 'speed', 'loop', 'quality'],
+      speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] },
+      loop: { active: false },
+      tooltips: { controls: true, seek: true },
+      invertTime: false
+    });
+
+    // Optional: logs
+    player.on('ready', () => console.log('Plyr ready with PIP!'));
+  </script>
+
+</body>
+</html>
